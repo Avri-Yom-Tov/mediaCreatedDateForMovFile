@@ -1,0 +1,26 @@
+{
+  "name": "Date-Mov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "are you need it.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avri-Yom-Tov/mediaCreatedDateForMovFile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avri-Yom-Tov/mediaCreatedDateForMovFile/issues"
+  },
+  "homepage": "https://github.com/Avri-Yom-Tov/mediaCreatedDateForMovFile#readme",
+  "dependencies": {
+    "exiftool-vendored": "^22.0.0",
+    "ffmpeg-static": "^5.1.0",
+    "ffprobe-static": "^3.1.0",
+    "fluent-ffmpeg": "^2.1.2"
+  }
+}
