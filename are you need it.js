@@ -41,12 +41,13 @@ fs.readdir(folderPath, function (err, files) {
             creationTime: creationTime,
           });
 
-          console.log(`File name: ${file}, Creation time: ${creationTime}`);
+          console.log(`MOV - File name: ${file}, Creation time: ${creationTime}`);
           resolve();
         }
       });
     });
   })).then(() => {
+    console.log(`All files Sum is : ${videoData.length}`);
     let count = 0;
     videoData.forEach((fileInfo) => {
 
@@ -54,7 +55,7 @@ fs.readdir(folderPath, function (err, files) {
       let creationDate = new Date(fileInfo.creationTime);
       let exiftoolDate = creationDate.toISOString().replace(/:/g, '-').split('.')[0].replace('T', ' ');
       const filePath = path.join(folderMp4, finalName);
-      console.log(filePath);
+      console.log(`mp4 - File name: ${fileInfo.name}`);
       const command = `exiftool -overwrite_original -CreateDate="${exiftoolDate}" "${filePath}"`;
 
       exec(command, (err) => {
@@ -62,7 +63,7 @@ fs.readdir(folderPath, function (err, files) {
           console.error(`Error updating metadata for ${finalName}: ${err.message} `);
         } else {
           count = count + 1;
-          console.log(`Successfully updated metadata for ${finalName} count : ${count} `);
+          console.log(`Successfully updated metadata for ${finalName} !!  File count : ${count} `);
         }
       });
     });
