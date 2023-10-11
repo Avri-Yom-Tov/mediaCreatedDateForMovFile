@@ -4,8 +4,10 @@
 // XnConvert
 // שם אל תשכח כמובן לסמן המרה עם שמירת התאריך ..
 // התוכנה הזו
-// HandBrake 
-// ממירה לקובץ אם פי 4 ומשנה את השם, יש שינוי קטן בקוד להתגבר על זה, עבור על זה בבקשה לפני ההפעלה
+// Video Converter תשתמש בתוכנה הזו  - - 
+
+// יכול להיות בהתחלה זורק שגיאות משונות , תעשה אתחול למחשב אמור לסדר את זה אחרי פעם פעמיים 
+// 13.10.2023
 // בהצלחה 
 const fs = require('fs');
 const ffmpeg = require("fluent-ffmpeg");
@@ -45,23 +47,22 @@ fs.readdir(folderPath, function (err, files) {
       });
     });
   })).then(() => {
+    let count = 0;
     videoData.forEach((fileInfo) => {
-      let baseName = fileInfo.name.split('_').join(' ').toLowerCase();
-      let nameAndExt = baseName.split('.');
-      let namePart = nameAndExt[0].charAt(0).toUpperCase() + nameAndExt[0].slice(1);
-      let extPart = "mp4";
-      let finalName = namePart + '.' + extPart;
-      // Outputs: "Mvi 1119.mp4"
+
+      const finalName = fileInfo.name.replace(".MOV", ".mp4");
       let creationDate = new Date(fileInfo.creationTime);
       let exiftoolDate = creationDate.toISOString().replace(/:/g, '-').split('.')[0].replace('T', ' ');
       const filePath = path.join(folderMp4, finalName);
+      console.log(filePath);
       const command = `exiftool -overwrite_original -CreateDate="${exiftoolDate}" "${filePath}"`;
 
       exec(command, (err) => {
         if (err) {
-          console.error(`Error updating metadata for ${finalName}: ${err.message}`);
+          console.error(`Error updating metadata for ${finalName}: ${err.message} `);
         } else {
-          console.log(`Successfully updated metadata for ${finalName}`);
+          count = count + 1;
+          console.log(`Successfully updated metadata for ${finalName} count : ${count} `);
         }
       });
     });
@@ -69,3 +70,12 @@ fs.readdir(folderPath, function (err, files) {
     console.error('An error occurred: ', err);
   });
 });
+
+
+
+// let baseName = fileInfo.name.split('_').join(' ').toLowerCase();
+// let nameAndExt = baseName.split('.');
+// let namePart = nameAndExt[0].charAt(0).toUpperCase() + nameAndExt[0].slice(1);
+// let extPart = "mp4";
+// let finalName = namePart + '.' + extPart;
+// Outputs: "Mvi 1119.mp4"
