@@ -7,10 +7,11 @@
 
 
 
+/// לפני !!!!!!!!!!! תמיר דרך התוכנה ..
+
 // Video Converter תשתמש בתוכנה הזו  - - 
 
 // יכול להיות בהתחלה זורק שגיאות משונות , תעשה אתחול למחשב אמור לסדר את זה אחרי פעם פעמיים 
-// 13.10.2023
 
 // בהצלחה 
 const fs = require('fs');
@@ -22,10 +23,10 @@ const { exec } = require("child_process");
 ffmpeg.setFfprobePath(ffprobeStatic.path);
 
 const folderPath = "C:\\Users\\avrahamy\\Desktop\\Vid";
-const folderMp4 = "C:\\Users\\avrahamy\\Desktop\\Mp4";
+const folderMp4 = "C:\\Users\\avrahamy\\Desktop\\Format Convert";
 let videoData = [];
 
-fs.readdir(folderPath, function (err, files) {
+fs.readdir(folderPath, (err, files) => {
   if (err) {
     return console.log('Unable to scan directory: ' + err);
   }
@@ -78,9 +79,3 @@ fs.readdir(folderPath, function (err, files) {
 
 
 
-// let baseName = fileInfo.name.split('_').join(' ').toLowerCase();
-// let nameAndExt = baseName.split('.');
-// let namePart = nameAndExt[0].charAt(0).toUpperCase() + nameAndExt[0].slice(1);
-// let extPart = "mp4";
-// let finalName = namePart + '.' + extPart;
-// Outputs: "Mvi 1119.mp4"
